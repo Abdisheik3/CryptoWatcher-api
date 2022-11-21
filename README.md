@@ -48,3 +48,4 @@ Stretch Goals
 ![Watch List]
 ![Logout]
 ## ERD
+![crypto erd](https://user-images.githubusercontent.com/108881102/203090533-1a0489cb-eb17-4d3f-bb5b-eb297261436c.png)
