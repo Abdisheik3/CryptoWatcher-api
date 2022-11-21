@@ -42,10 +42,10 @@ Stretch Goals
 - Monday-Wednesday: Front End Styling
 - Thursday: Finishing up
 ## Wireframes
-![Login]
-![Home]
-![Details]
-![Watch List]
-![Logout]
+![wireframe c1](https://user-images.githubusercontent.com/108881102/203096275-8da44016-e2df-4507-bee3-87a30f630dd3.png)
+![wireframe c2](https://user-images.githubusercontent.com/108881102/203096286-1ffa6ac3-b201-4345-8e3c-1a770eeb588e.png)
+![wireframe c3](https://user-images.githubusercontent.com/108881102/203096300-22932b8e-ef74-4e02-947f-7f2b22d2590e.png)
+![wireframe c4](https://user-images.githubusercontent.com/108881102/203096319-86e38fbb-aaef-4905-968d-77f66a6090a6.png)
+
 ## ERD
 ![crypto erd](https://user-images.githubusercontent.com/108881102/203090533-1a0489cb-eb17-4d3f-bb5b-eb297261436c.png)
