@@ -4,7 +4,7 @@ CryptoWatcher is a cryptocurrency tracking app that allows you to keep track of 
 You can also comment on coins to help your cryptos buddies.
 ## Team Roles
   - Abdiresac Sheikdon: Full Stack Developer
-  - Abdiaziz Sheikh: Full Stack Developer
+  - Abdiaziz Sheikh: Git Manager, Back-end, Front-end
 ## Technologies Used
   - React
   - Express
