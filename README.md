@@ -7,11 +7,16 @@ CryptoWatcher is a cryptocurrency tracking app that allows you to keep track of 
 ## Technologies Used
   - React
   - Express
+  - Html
+  - Css
+  - Javascript
+  - Mongodb
 ## User Stories
 As a user I want to...
 -   sign up
 -   sign in
 -   sign out
+-   change password
 -   Add a crypto coin with:
     -   name
     -   price
