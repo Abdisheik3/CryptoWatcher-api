@@ -27,6 +27,9 @@ As a user I want to...
     -   about
 -   Like a crypto app
 -   View other cryptos based off of search
+-   make comments
+-   delete comments
+-   update comments
 Stretch Goals
 -   Add a crypto to my "watch list"
 -   View my "watch list"
@@ -44,3 +47,4 @@ Stretch Goals
 ![Details]
 ![Watch List]
 ![Logout]
+## ERD
