@@ -10,6 +10,7 @@ const coinSchema = new Schema({
         type: String,
         required: true
     },
+    image: String,
     id: {
         type: String,
         required: true,
