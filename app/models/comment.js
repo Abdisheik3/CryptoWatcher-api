@@ -7,15 +7,12 @@ const commentSchema = new mongoose.Schema(
 			ref: 'User',
 			required: true
 		},
-        username: String,
 		comment: {
 			type: String,
 			required: true,
 		},
-        coinId : {
-            type: String,
-            required: true
-        },
+
+	
 	},
 	{
 		timestamps: true,

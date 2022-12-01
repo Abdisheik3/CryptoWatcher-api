@@ -22,7 +22,7 @@ router.get('/coins', requireToken, (req, res, next) => {
 
 router.get('/coins/search/:name', (req, res, next) => {
     const name = req.params.name
-    axios.get(`https://api.coingecko.com/api/v3/coins/search/&format=json&query="${name}"&resources=coin&limit=25`)
+    axios.get(`https://api.coingecko.com/api/v3/coins/${name}`)
         .then(handle404)
         .then(apiRes => {
             res.body = apiRes.data.results
@@ -51,6 +51,7 @@ router.get('/coins/:id', (req, res, next) => {
     axios.get(`https://api.coingecko.com/api/v3/coins/${id}`)
         .then(handle404)
         .then(apiRes => {
+            console.log(apiRes.data)
             res.body = apiRes.data.results
             return res
         })

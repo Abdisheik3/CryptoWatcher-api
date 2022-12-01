@@ -9,58 +9,27 @@ const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
-// INDEX
-// GET /comments/coinid
-router.get('/comments/:coinId', requireToken, (req, res, next) => {
-	const coinId = req.params.coinId
-    Comment.find({ coinId : coinId})
-		.then((comments) => {
-			// `comments` will be an array of Mongoose documents
-			// we want to convert each one to a POJO, so we use `.map` to
-			// apply `.toObject` to each one
-			return comments.map((comment) => comment.toObject())
-		})
-		// respond with status 200 and JSON of the comments
-		.then((comments) => res.status(200).json({ comments: comments }))
-		// if an error occurs, pass it to the handler
-		.catch(next)
-})
 
-// SHOW
-// GET /comments/5a7db6c74d55bc51bdf39793
-router.get('/comments/show/:id', requireToken, (req, res, next) => {
-	// req.params.id will be set based on the `:id` in the route
-	Comment.findById(req.params.id)
-		.then(handle404)
-		// if `findById` is succesful, respond with 200 and "comment" JSON
-		.then((comment) => res.status(200).json({ comment: comment.toObject() }))
-		// if an error occurs, pass it to the handler
-		.catch(next)
-})
 
 // CREATE
 // POST /comments
 router.post('/comments/:coinId', requireToken, (req, res, next) => {
+    const comment = req.body.comment
     const coinId = req.params.coinId
-    const score = req.body.comment.score
-    // set owner of new comment to be current user
-	req.body.comment.owner = req.user.id
-    req.body.comment.username = req.user.username
-    req.body.comment.coinId = coinId
-    // script to add coin to local database if it isn't already there
     
-    
-	Comment.create(req.body.comment)
-		// respond to succesful `create` with status 201 and JSON of new "comment"
-		.then((comment) => {
-			res.status(201).json({ comment: comment })
-		})
-        .then(() => {coinApi(coinId)})
-        
-		// if an error occurs, pass it off to our error handler
-		// the error handler needs the error message and the `res` object so that it
-		// can send an error message back to the client
-		.catch(next)
+     // find the pet by its id
+     Coin.findById(coinId)
+     .then(handle404)
+     // add the toy to the pet
+     .then(coin => {
+         // push the toy into the pet's toy array and return the saved pet
+         coin.comments.push(comment)
+
+         return coin.save()
+     })
+     .then(coin => res.status(201).json({ coin: coin }))
+     // pass to the next thing
+     .catch(next)
     
 })
 
