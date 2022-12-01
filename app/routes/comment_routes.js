@@ -8,8 +8,15 @@ const requireOwnership = customErrors.requireOwnership
 const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
+// index for coin comments
+router.get('/comments/:coinId', requireToken, (req, res, next) => {
+    Comment.find()
+    .then(handle404)
+    .then(comments => res.status(200).json({ comments: comments}
+    )) 
+    .catch(next)
 
-
+})
 
 // CREATE
 // POST /comments
