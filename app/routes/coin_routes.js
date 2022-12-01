@@ -20,19 +20,19 @@ router.get('/coins', requireToken, (req, res, next) => {
 		.catch(next)
 })
 
-router.get('/coins/search/:name', (req, res, next) => {
-    const name = req.params.name
-    axios.get(`https://api.coingecko.com/api/v3/coins/${name}`)
-        .then(handle404)
-        .then(apiRes => {
-            res.body = apiRes.data.results
-            return res
-        })
-        .then((res) => res.status(200).json({results : res.body}))
+// router.get('/coins/search/:name', (req, res, next) => {
+//     const name = req.params.name
+//     axios.get(`https://api.coingecko.com/api/v3/coins/${name}`)
+//         .then(handle404)
+//         .then(apiRes => {
+//             res.body = apiRes.data.results
+//             return res
+//         })
+//         .then((res) => res.status(200).json({results : res.body}))
 
-        .catch(next)
+//         .catch(next)
 
-})
+// })
 
 
 router.get('/coins/watchlist/:id', (req, res, next) => {

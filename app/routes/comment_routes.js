@@ -14,23 +14,16 @@ const router = express.Router()
 // CREATE
 // POST /comments
 router.post('/comments/:coinId', requireToken, (req, res, next) => {
-    const comment = req.body.comment
-    const coinId = req.params.coinId
-    
-     // find the pet by its id
-     Coin.findById(coinId)
-     .then(handle404)
-     // add the toy to the pet
-     .then(coin => {
-         // push the toy into the pet's toy array and return the saved pet
-         coin.comments.push(comment)
+    req.body.comment.owner = req.user.id
 
-         return coin.save()
-     })
-     .then(coin => res.status(201).json({ coin: coin }))
-     // pass to the next thing
-     .catch(next)
-    
+    // on the front end, I HAVE to send a pet as the top level key
+    Comment.create(req.body.comment)
+    .then(comment => {
+        res.status(201).json({ comment: comment })
+    })
+    .catch(next)
+    // ^^^ shorthand for:
+        //^ .catch(error => next(error))
 })
 
 // UPDATE
