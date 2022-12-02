@@ -11,7 +11,11 @@ const commentSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		coinId: String
+		coinId: {
+            type: String,
+            required: true
+        },
+		email: String
 
 	},
 	{

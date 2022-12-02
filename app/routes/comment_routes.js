@@ -10,8 +10,11 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 // index for coin comments
 router.get('/comments/:coinId', requireToken, (req, res, next) => {
-    Comment.find()
-    .then(handle404)
+    const coinId = req.params.coinId
+    Comment.find( {coinId : coinId})
+    .then((comments) => {
+        return comments.map((comment) => comment.toObject())
+    })
     .then(comments => res.status(200).json({ comments: comments}
     )) 
     .catch(next)
@@ -21,13 +24,17 @@ router.get('/comments/:coinId', requireToken, (req, res, next) => {
 // CREATE
 // POST /comments
 router.post('/comments/:coinId', requireToken, (req, res, next) => {
-    req.body.comment.owner = req.user.id
+    const coinId = req.params.coinId
 
+    req.body.comment.owner = req.user.id
+    req.body.comment.email = req.user.email
+    req.body.comment.coinId = coinId
     // on the front end, I HAVE to send a pet as the top level key
     Comment.create(req.body.comment)
     .then(comment => {
         res.status(201).json({ comment: comment })
     })
+    .then(() => {coinApi(coinId)})
     .catch(next)
     // ^^^ shorthand for:
         //^ .catch(error => next(error))
